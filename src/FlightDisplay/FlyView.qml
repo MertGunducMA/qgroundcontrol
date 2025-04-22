@@ -175,4 +175,98 @@ Item {
         show:                   !QGroundControl.videoManager.fullScreen &&
                                     (videoControl.pipState.state === videoControl.pipState.pipState || mapControl.pipState.state === mapControl.pipState.pipState)
     }
+
+    // Align labels and windows, update labels to 'Aircraft', 'Active', 'Listener'
+    Rectangle {
+        id: gcsHandoverPanel
+        anchors.top: videoControl.bottom
+        anchors.right: parent.right
+        anchors.topMargin: 120
+        anchors.rightMargin: 10
+        width: 300
+        height: 150
+        color: Qt.rgba(0.2, 0.2, 0.2, 0.8)
+        radius: 5
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: ScreenTools.defaultFontPixelWidth
+            spacing: ScreenTools.defaultFontPixelHeight
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: ScreenTools.defaultFontPixelWidth
+                Layout.margins: ScreenTools.defaultFontPixelWidth
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    QGCLabel {
+                        text: qsTr("Aircraft")
+                        color: "white"
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+                    Rectangle {
+                        width: 80
+                        height: 30
+                        color: "#333"
+                        radius: 5
+                        QGCLabel {
+                            anchors.centerIn: parent
+                            text: "N/A"
+                            color: "white"
+                        }
+                    }
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    QGCLabel {
+                        text: qsTr("Active")
+                        color: "white"
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+                    Rectangle {
+                        width: 80
+                        height: 30
+                        color: "#333"
+                        radius: 5
+                        QGCLabel {
+                            anchors.centerIn: parent
+                            text: "N/A"
+                            color: "white"
+                        }
+                    }
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    QGCLabel {
+                        text: qsTr("Listener")
+                        color: "white"
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+                    Rectangle {
+                        width: 80
+                        height: 30
+                        color: "#333"
+                        radius: 5
+                        QGCLabel {
+                            anchors.centerIn: parent
+                            text: "N/A"
+                            color: "white"
+                        }
+                    }
+                }
+            }
+
+            QGCButton {
+                id: handoverButton
+                Layout.alignment: Qt.AlignHCenter
+                text: qsTr("Handover Control")
+                onClicked: {
+                    // Handover logic here
+                }
+            }
+        }
+    }
 }
